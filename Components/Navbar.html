@@ -1,0 +1,84 @@
+<div id="navbar">
+    <div id="navbar-left">
+        <img src="../icons/icon.png" alt="">
+    </div>
+    <div id="navbar-right">
+        <div class="navbar-button" id="help-button"><div></div></div>
+        <a href="../login/" class="login-button" style="background:var(--bg-color-2); color:black;">Log In</a>
+        <a href="../login/?signup" class="login-button" style="background:var(--accent-color); color:white;">Sign Up</a>
+    </div>
+</div>
+<style>
+    #navbar{
+        width:calc(100vw - 48px);
+        padding:0 24px;
+        height:72px;
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+        background:var(--bg-color-1);
+        position:fixed;
+        top:0;
+        left:0;
+    }
+
+    #navbar > div{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        gap:12px;
+    }
+
+    .navbar-button{
+        width:48px;
+        height:48px;
+        border-radius:6px;
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:center;
+        cursor:pointer;
+        background:var(--bg-color-1);
+        transition-duration:250ms;
+    }
+
+    .navbar-button:hover{
+        background:var(--bg-color-2);
+    }
+
+    .navbar-button > div{
+        width:24px;
+        height:24px;
+        background-size:cover;
+        background-position:center;
+        background-repeat:no-repeat;
+    }
+
+    #help-button > div{
+        background-image:url("../icons/landing/help.png");
+    }
+
+    #help-button:hover > div{
+        background-image:url("../icons/landing/help.gif");
+    }
+
+    .login-button{
+        width:108px;
+        height:48px;
+        border-radius:6px;
+        text-align:center;
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:center;
+        text-decoration:none;
+        font-weight:500;
+        font-size:14px;
+    }
+
+    #navbar-left > img{
+        height:48px;
+    }
+
+</style>

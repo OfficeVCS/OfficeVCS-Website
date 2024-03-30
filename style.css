@@ -1,0 +1,38 @@
+#hero-container{
+    width:100vw;
+    height:512px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:24px;
+}
+
+#hero-container > h1{
+    text-align:center;
+    font-size:64px;
+    max-width:50vw;
+    margin:0;
+}
+
+#hero-container > a:first-of-type{
+    padding:0 24px;
+    height:48px;
+    border-radius:6px;
+    text-align:center;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-weight:500;
+    font-size:16px;
+    background:var(--accent-color);
+    color:white;
+}
+
+.accent-span{
+    background: -webkit-linear-gradient(0deg, var(--accent-color), var(--accent-color-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

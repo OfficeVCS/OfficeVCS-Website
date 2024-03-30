@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+body{
+    margin:0;
+}
+
+body *{
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-variation-settings:"slnt" 0;
+}
+
+:root{
+    --bg-color-1:#ffffff;
+    --bg-color-2:#f0f2f8;
+    --dark-gray:#191a23;
+    --accent-color:#1FBAF1;
+    --light-accent:#C9E4ED;
+    --accent-color-2:#B741CB;
+    --light-accent-2:#C1A9C6;
+}
