@@ -7,8 +7,100 @@
     <link rel="stylesheet" href="../main.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="../icons/icon.png">
+
+    <script src="../ComponentLib.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="../main.js" defer></script>
+
+    <!--https://dribbble.com/shots/16838613-Dark-Light-UI-for-Cards-Components/attachments/11897721?mode=media-->
 </head>
 <body>
-
+    <div id="navbar-container"></div>
+    <div id="modal-containers">
+        <div id="login-container" class="active-modal">
+            <img src="../icons/icon.png" alt="">
+            <h1>Login</h1>
+            <h6>Email Address</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/email.png" alt="Email Icon">
+                <input type="text">
+            </div>
+            <h6>Password</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/lock.png" alt="Email Icon">
+                <input type="password">
+            </div>
+            <div id="forgot-password-container">
+                <p id="forgot-password-btn">Forgot Password?</p>
+            </div>
+            <div class="checkbox-container">
+                <div class="checkbox">
+                    <img src="../icons/landing/check.png" alt="">
+                </div>
+                <p>Keep Me Signed In</p>
+            </div>
+            <button class="hero-button">Login</button>
+        </div>
+        <div id="signup-container">
+            <div class="back-button" data-container="0">
+                <img src="../icons/landing/back.png" alt="Back Button">
+            </div>
+            <img src="../icons/icon.png" alt="">
+            <h1>Sign Up</h1>
+            <h6>Full Name</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/user.png" alt="Email Icon">
+                <input type="text">
+            </div>
+            <h6>Email Address</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/email.png" alt="Email Icon">
+                <input type="text">
+            </div>
+            <h6>Password</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/lock.png" alt="Email Icon">
+                <input type="password">
+            </div>
+            <button class="hero-button">Sign In</button>
+        </div>
+        <div id="forgot-password">
+            <div class="back-button" data-container="0">
+                <img src="../icons/landing/back.png" alt="Back Button">
+            </div>
+            <img src="../icons/icon_red.png" alt="">
+            <h1>Forgot Password</h1>
+            <h6>Email Address</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/email.png" alt="Email Icon">
+                <input type="text">
+            </div>
+            <button class="hero-button">Reset Password</button>
+        </div>
+        <div id="reset-password">
+            <div class="back-button" data-container="2">
+                <img src="../icons/landing/back.png" alt="Back Button">
+            </div>
+            <img src="../icons/icon.png" alt="">
+            <h1>Sign Up</h1>
+            <h6>Full Name</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/user.png" alt="Email Icon">
+                <input type="text">
+            </div>
+            <h6>Email Address</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/email.png" alt="Email Icon">
+                <input type="text">
+            </div>
+            <h6>Password</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/lock.png" alt="Email Icon">
+                <input type="password">
+            </div>
+            <button class="hero-button">Sign In</button>
+        </div>
+    </div>
+    <div id="banner-image"></div>
 </body>
 </html>

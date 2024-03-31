@@ -3,12 +3,45 @@
         <img src="../icons/icon.png" alt="">
     </div>
     <div id="navbar-right">
-        <div class="navbar-button" id="help-button"><div></div></div>
-        <a href="../login/" class="login-button" style="background:var(--bg-color-2); color:black;">Log In</a>
-        <a href="../login/?signup" class="login-button" style="background:var(--accent-color); color:white;">Sign Up</a>
+        <div class="modal-toggle">
+            <img src="../icons/landing/sun.png" alt="">
+            <label class="switch">
+                <input type="checkbox" class="toggle-checkbox" name="toggleCheckbox" id="theme-checkbox">
+                <span class="slider"></span>
+            </label>
+            <img src="../icons/landing/moon.png" alt="">
+        </div>
+        <div class="navbar-button" id="help-button"></div>
+        <a href="../login/" class="login-button" style="background:var(--bg-color-2);">Log In</a>
+        <a href="../login/?signup" class="login-button" style="background:var(--accent-color); color:white !important;">Sign Up</a>
     </div>
 </div>
 <style>
+    .modal-toggle{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        gap:12px;
+    }
+
+    .modal-toggle > img{
+        height:24px;
+        filter: invert(var(--image-invert));
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 42px;
+        height: 24px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
     #navbar{
         width:calc(100vw - 48px);
         padding:0 24px;
@@ -19,6 +52,7 @@
         align-items:center;
         background:var(--bg-color-1);
         position:fixed;
+        z-index:2;
         top:0;
         left:0;
     }
@@ -47,19 +81,21 @@
         background:var(--bg-color-2);
     }
 
-    .navbar-button > div{
+    .navbar-button::after{
+        content:'';
         width:24px;
         height:24px;
         background-size:cover;
         background-position:center;
         background-repeat:no-repeat;
+        filter:invert(var(--image-invert));
     }
 
-    #help-button > div{
+    #help-button::after{
         background-image:url("../icons/landing/help.png");
     }
 
-    #help-button:hover > div{
+    #help-button:hover::after{
         background-image:url("../icons/landing/help.gif");
     }
 
@@ -81,4 +117,69 @@
         height:48px;
     }
 
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--border-color);
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    .toggle-checkbox:checked + .slider {
+        background-color: var(--accent-color);
+    }
+
+    .toggle-checkbox:focus + .slider {
+        box-shadow: 0 0 1px var(--accent-color);
+    }
+
+    .toggle-checkbox:checked + .slider:before {
+        -webkit-transform: translateX(18px);
+        -ms-transform: translateX(18px);
+        transform: translateX(18px);
+    }
 </style>
+<script>
+    function initializeNavbar(){
+        const scheme = localStorage.getItem('colorscheme')
+        const elem = document.getElementById("theme-checkbox")
+
+        if(scheme === "light"){
+            elem.checked = false;
+        } else if(scheme === "dark"){
+            elem.checked = true;
+        }
+    }
+
+    document.getElementById("theme-checkbox").onchange = function(){
+        const elem = document.getElementById("theme-checkbox")
+
+        if(elem.checked){
+            localStorage.setItem('colorscheme', 'dark');
+            initializeColorScheme("dark")
+        } else {
+            localStorage.setItem('colorscheme', 'light');
+            initializeColorScheme("light")
+        }
+    }
+
+    initializeNavbar()
+</script>
