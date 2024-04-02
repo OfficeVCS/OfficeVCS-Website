@@ -6,7 +6,26 @@ document.getElementById("forgot-password-btn").addEventListener("click", functio
     });
 
     document.getElementById("modal-containers").children[2].classList.add("active-modal");
-})
+
+    checkImage();
+});
+
+function checkImage(){
+    const children = document.querySelectorAll('#modal-containers > *');
+
+    let targetModal = -1;
+    children.forEach((child, index) => {
+        if (child.classList.contains('active-modal')) {
+            targetModal = index;
+        }
+    });
+
+    if(targetModal === 2 || targetModal === 3){
+        document.getElementById("banner-image").style.backgroundImage = "url('../icons/icon_red.png')";
+    } else {
+        document.getElementById("banner-image").style.backgroundImage = "url('../icons/icon.png')";
+    }
+}
 
 function initialize(){
     const queryParams = new URLSearchParams(window.location.search);
@@ -28,6 +47,8 @@ function initialize(){
             });
 
             document.getElementById("modal-containers").children[targetModal].classList.add("active-modal");
+
+            checkImage();
         })
     });
 
@@ -36,6 +57,8 @@ function initialize(){
             checkbox.classList.toggle('active-checkbox');
         });
     });
+
+    checkImage();
 }
 
 initialize();
