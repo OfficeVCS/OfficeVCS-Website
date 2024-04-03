@@ -10,6 +10,7 @@ async function createComponent(htmlFilePath, targetElement) {
 
         // Resolve relative paths for images, links, scripts, etc.
         resolveRelativePaths(tempContainer, htmlFilePath);
+        resolvePseudoElementStyles(tempContainer, htmlFilePath)
 
         if (!targetElement) {
             throw new Error('Target element not found');
@@ -25,6 +26,29 @@ async function createComponent(htmlFilePath, targetElement) {
     } catch (error) {
         console.error('Error loading or inserting HTML:', error);
     }
+}
+
+function resolvePseudoElementStyles(container, htmlFilePath) {
+    const baseUri = new URL(htmlFilePath, window.location.href);
+
+    container.querySelectorAll('style').forEach(style => {
+        let cssText = style.innerHTML;
+
+        // Simple regex to find background-image in pseudo-elements
+        // Note: This is a very basic example and might need to be adapted
+        const regex = /\.(\w+::(?:before|after))\s*{\s*background-image:\s*url\(['"]?(?!http:\/\/|https:\/\/)(.*?)['"]?\);/g;
+        let match;
+
+        while ((match = regex.exec(cssText)) !== null) {
+            // Construct absolute URL
+            const newUrl = new URL(match[2], baseUri).href;
+            // Replace relative URL with absolute URL in CSS text
+            cssText = cssText.replace(match[0], match[0].replace(match[2], newUrl));
+        }
+
+        // Update style element
+        style.innerHTML = cssText;
+    });
 }
 
 function resolveRelativePaths(container, htmlFilePath) {
@@ -43,6 +67,17 @@ function resolveRelativePaths(container, htmlFilePath) {
         const href = el.getAttribute('href');
         if (href && !href.startsWith('http://') && !href.startsWith('https://')) {
             el.href = new URL(href, baseUri).href;
+        }
+    });
+
+    container.querySelectorAll('*').forEach(el => {
+        const style = el.getAttribute('style');
+        if (style && style.includes('background-image')) {
+            const newStyle = style.replace(/background-image: *url\(['"]?(?!http:\/\/|https:\/\/)(.*?)['"]?\)/g, (match, url) => {
+                const newUrl = new URL(url, baseUri).href;
+                return `background-image: url('${newUrl}')`;
+            });
+            el.setAttribute('style', newStyle);
         }
     });
 }

@@ -79,15 +79,18 @@ document.getElementById("delete-btn").addEventListener("click", async function (
     }
 
     console.log(context)
-})
+});
 
 document.getElementById("log-in-btn").addEventListener("click", async function (e) {
     e.preventDefault();
 
     const userObj = {
         email: document.getElementById("log-in-email").value,
-        password: document.getElementById("log-in-password").value
+        password: document.getElementById("log-in-password").value,
+        keepMeSignedIn: document.getElementById("keep-signed-in").classList.contains("active-checkbox")
     }
+
+    //console.log(userObj);
 
     const response = await fetch(`https://us-central1-office-vcs.cloudfunctions.net/app/login`, {
         method: 'POST',
@@ -101,10 +104,22 @@ document.getElementById("log-in-btn").addEventListener("click", async function (
         mode: 'cors'
     });
 
-    const context = await response.text();
+    const context = response.status;
 
-    if(context !== "Login successful"){
-        displayAlert(context);
+    if(context === 200){
+        const message = await response.json();
+
+        displayAlert(message.message)
+
+        if(userObj.keepMeSignedIn){
+            window.localStorage.setItem('token', message.token);
+        } else {
+            window.sessionStorage.setItem('token', message.token);
+        }
+    } else {
+        const text = await response.text();
+
+        displayAlert(text);
     }
 });
 
@@ -112,7 +127,7 @@ document.getElementById("sign-up-btn").addEventListener("click", async function 
     e.preventDefault();
 
     const userObj = {
-        name:document.getElementById("sign-up-name").value,
+        fullName:document.getElementById("sign-up-name").value,
         email: document.getElementById("sign-up-email").value,
         password: document.getElementById("sign-up-password").value
     }

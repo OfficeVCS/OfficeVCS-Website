@@ -59,5 +59,12 @@
     }
 </style>
 <script>
+    function getToken() {
+        return sessionStorage.getItem('token') || localStorage.getItem('token');
+    }
 
+    function removeToken() {
+        sessionStorage.removeItem('token');
+        localStorage.removeItem('token');
+    }
 </script>
