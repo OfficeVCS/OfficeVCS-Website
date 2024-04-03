@@ -23,12 +23,12 @@
             <h6>Email Address</h6>
             <div class="modal-input">
                 <img src="../icons/landing/email.png" alt="Email Icon">
-                <input type="text">
+                <input type="text" id="log-in-email">
             </div>
             <h6>Password</h6>
             <div class="modal-input">
                 <img src="../icons/landing/lock.png" alt="Email Icon">
-                <input type="password">
+                <input type="password" id="log-in-password">
             </div>
             <div id="forgot-password-container">
                 <p id="forgot-password-btn">Forgot Password?</p>
@@ -39,7 +39,7 @@
                 </div>
                 <p>Keep Me Signed In</p>
             </div>
-            <button class="hero-button">Login</button>
+            <button class="hero-button" id="log-in-btn">Login</button>
         </div>
         <div id="signup-container">
             <div class="back-button" data-container="0">
@@ -50,19 +50,25 @@
             <h6>Full Name</h6>
             <div class="modal-input">
                 <img src="../icons/landing/user.png" alt="Email Icon">
-                <input type="text">
+                <input type="text" id="sign-up-name">
             </div>
             <h6>Email Address</h6>
             <div class="modal-input">
                 <img src="../icons/landing/email.png" alt="Email Icon">
-                <input type="text">
+                <input type="text" id="sign-up-email">
             </div>
             <h6>Password</h6>
             <div class="modal-input">
                 <img src="../icons/landing/lock.png" alt="Email Icon">
-                <input type="password">
+                <input type="password" id="sign-up-password">
             </div>
-            <button class="hero-button">Sign In</button>
+            <div class="checkbox-container">
+                <div class="checkbox">
+                    <img src="../icons/landing/check.png" alt="">
+                </div>
+                <p>I accept the OfficeVCS <span><a href="../user-agreement" class="accent-link">terms and conditions</a></span>.</p>
+            </div>
+            <button class="hero-button" id="sign-up-btn">Sign Up</button>
         </div>
         <div id="forgot-password">
             <div class="back-button" data-container="0">
@@ -100,7 +106,147 @@
             </div>
             <button class="hero-button">Sign In</button>
         </div>
+        <div id="delete-user">
+            <div class="back-button" data-container="2">
+                <img src="../icons/landing/back.png" alt="Back Button">
+            </div>
+            <img src="../icons/icon_red.png" alt="">
+            <h1>Delete User</h1>
+            <h6>Email Address</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/email.png" alt="Email Icon">
+                <input type="text" id="delete-user-email">
+            </div>
+            <h6>Password</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/lock.png" alt="Email Icon">
+                <input type="password" id="delete-user-password">
+            </div>
+            <button class="hero-button" style="background:var(--profile-color-6);" id="delete-btn">Confirm Deletion</button>
+        </div>
+        <div id="user-onboarding">
+            <div class="back-button" data-container="0">
+                <img src="../icons/landing/back.png" alt="Back Button">
+            </div>
+            <img src="../icons/icon_green.png" alt="">
+            <h1>User Onboarding</h1>
+            <h6>What Type of User Are You?</h6>
+            <div class="dropdown">
+                <div class="dropdown-select">
+                    <div>
+                        <img src="../icons/landing/user.png" alt="">
+                        <span class="select">Select an option</span>
+                    </div>
+                    <img src="../icons/landing/dropdown.png" alt="Caret">
+                </div>
+                <div class="dropdown-list">
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/home.png" alt="">
+                        <p>Individual / Freelancer</p>
+                    </div>
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/student.png" alt="">
+                        <p>Student</p>
+                    </div>
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/employee.png" alt="">
+                        <p>Employee</p>
+                    </div>
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/business.png" alt="">
+                        <p>Organization</p>
+                    </div>
+                    <!-- Add more options here -->
+                </div>
+            </div>
+            <h6>Date of Birth</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/birthday.png" alt="Birthday">
+                <input type="date" style="width:calc(100% - 48px); padding-right:6px;">
+            </div>
+            <h6>Phone Number (Include Country and Area Code)</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/phone.png" alt="Email Icon">
+                <input type="text">
+            </div>
+            <h6>What is the name of your organization or institution? (If applicable)</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/employee.png" alt="Birthday">
+                <input type="text">
+            </div>
+            <h6>How large is your organization?</h6>
+            <div class="dropdown">
+                <div class="dropdown-select">
+                    <div>
+                        <img src="../icons/landing/building.png" alt="">
+                        <span class="select">Select an option</span>
+                    </div>
+                    <img src="../icons/landing/dropdown.png" alt="Caret">
+                </div>
+                <div class="dropdown-list">
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/building_super_small.png" alt="">
+                        <p>1 - 10 Members</p>
+                    </div>
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/building_small.png" alt="">
+                        <p>11 - 50 Members</p>
+                    </div>
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/building_medium.png" alt="">
+                        <p>51 - 200 Members</p>
+                    </div>
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/building.png" alt="">
+                        <p>201 - 500 Members</p>
+                    </div>
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/building_large.png" alt="">
+                        <p>500+ Members</p>
+                    </div>
+                    <!-- Add more options here -->
+                </div>
+            </div>
+            <h6>What type of projects will you primarily be working on? (If multiple, select only top choice)</h6>
+            <div class="dropdown">
+                <div class="dropdown-select">
+                    <div>
+                        <img src="../icons/landing/project.png" alt="">
+                        <span class="select">Select an option</span>
+                    </div>
+                    <img src="../icons/landing/dropdown.png" alt="Caret">
+                </div>
+                <div class="dropdown-list">
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/student.png" alt="">
+                        <p>Academic Projects</p>
+                    </div>
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/business.png" alt="">
+                        <p>Business and Professional Projects</p>
+                    </div>
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/art.png" alt="">
+                        <p>Creative and Personal Projects</p>
+                    </div>
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/development.png" alt="">
+                        <p>Development and IT Projects</p>
+                    </div>
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/film.png" alt="">
+                        <p>Design and Multimedia Projects</p>
+                    </div>
+                    <div class="dropdown-option">
+                        <img src="../icons/landing/teach.png" alt="">
+                        <p>Educational and Training Projects</p>
+                    </div>
+                </div>
+            </div>
+            <button class="hero-button" style="background:var(--profile-color-4); margin-top:18px;">Confirm Details</button>
+        </div>
     </div>
+    <div id="error-modal">Display Error Here</div>
     <div id="banner-image"></div>
 </body>
 </html>

@@ -2,6 +2,10 @@ body, body *{
     transition-duration:250ms;
 }
 
+body{
+    overflow-y:scroll;
+}
+
 #modal-containers{
     display:flex;
     flex-direction:column;
@@ -127,6 +131,11 @@ body, body *{
     color:White;
 }
 
+.hero-button:hover{
+    transform:scale(1.0125);
+    box-shadow:0 0 10px 2px var(--border-color);
+}
+
 #forgot-password-container{
     width:100%;
     display:flex;
@@ -169,7 +178,7 @@ body, body *{
 }
 
 .checkbox-container > p{
-    font-size:14px;
+    font-size:12px;
     margin:0;
 }
 
@@ -200,4 +209,115 @@ body, body *{
 @keyframes rotate{
     0%{transform:rotate(0deg)}
     100%{transform:rotate(360deg)}
+}
+
+#error-modal{
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    padding:9px 12px;
+    border-radius:6px;
+    color:white;
+    font-weight:500;
+    font-size:14px;
+    z-index:1;
+    background:var(--profile-color-6)
+}
+
+#error-modal:not(.active-modal){
+    visibility:hidden;
+    opacity:0;
+}
+
+#error-modal.active-modal{
+    visibility:visible;
+    opacity:1;
+}
+
+.dropdown {
+    position: relative;
+    width: 100%;
+
+}
+
+.dropdown-select {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height:32px;
+    padding:0 12px;
+    width:calc(100% - 24px);
+    border:1px solid var(--border-color);
+    background:var(--bg-color-2);
+    border-radius:6px;
+}
+
+.dropdown-select > div{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:12px;
+}
+
+.dropdown-select > div > img{
+    height:18px;
+    filter:invert(var(--image-invert));
+}
+
+.dropdown-select > img{
+    height:14px;
+    filter:invert(var(--image-invert));
+}
+
+.dropdown-select > div > span{
+    font-size:14px;
+}
+
+.caret {
+    border: 5px solid transparent;
+    border-top-color: #000;
+}
+
+.dropdown-list {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    border: 1px solid var(--border-color);
+    background:var(--bg-color-1);
+    overflow:hidden;
+    border-radius:6px;
+    display: none;
+    z-index: 1;
+}
+
+.dropdown-option {
+    padding: 6px 12px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:12px;
+    background-color: var(--bg-color-1);
+    cursor: pointer;
+}
+
+.dropdown-option > img{
+    height:18px;
+    filter:invert(var(--image-invert))
+}
+
+.dropdown-option > p{
+    font-size:14px;
+    margin:0;
+}
+
+.dropdown-option:hover {
+    background-color: var(--bg-color-2);
+}
+
+.accent-link{
+    color:var(--accent-color);
+    text-decoration:none;
+    font-weight:600;
 }
