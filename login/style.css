@@ -204,6 +204,7 @@ body{
     width:125vmin;
     height:125vmin;
     animation: rotate 300s linear infinite;
+    z-index:-1;
 }
 
 @keyframes rotate{

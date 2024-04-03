@@ -1,6 +1,6 @@
 <div id="navbar">
     <div id="navbar-left">
-        <img src="../icons/icon.png" alt="">
+        <img src="../icons/icon.png" alt="Main Icon">
     </div>
     <div id="navbar-right">
         <div class="modal-toggle">
@@ -11,9 +11,15 @@
             </label>
             <img src="../icons/landing/moon.png" alt="">
         </div>
+        <div id="shared-people">
+            <div style="background:var(--profile-color-1);">RK</div>
+            <div style="background:var(--profile-color-4);">SS</div>
+            <div style="background:var(--profile-color-3);">VJ</div>
+            <div style="background:var(--profile-color-6);">AP</div>
+        </div>
         <div class="navbar-button" id="help-button"></div>
-        <a href="../login/" class="login-button" style="background:var(--bg-color-2);">Log In</a>
-        <a href="../login/?signup" class="login-button" style="background:var(--accent-color); color:white !important;">Sign Up</a>
+        <div class="navbar-button" id="share-button"></div>
+        <div id="profile-picture" class="notification-profile">RK</div>
     </div>
 </div>
 <style>
@@ -41,7 +47,7 @@
         width: 0;
         height: 0;
     }
-    
+
     #navbar{
         width:calc(100vw - 48px);
         padding:0 24px;
@@ -99,22 +105,37 @@
         background-image:url("../icons/landing/help.gif");
     }
 
-    .login-button{
-        width:108px;
-        height:48px;
-        border-radius:6px;
-        text-align:center;
+    #share-button::after{
+        background-image:url("../pages/icons/share.png");
+    }
+
+    #share-button:hover::after{
+        background-image:url("../pages/icons/share.gif");
+    }
+
+    #shared-people{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:flex-start;
+    }
+
+    #shared-people > div{
         display:flex;
         flex-direction:row;
         align-items:center;
         justify-content:center;
-        text-decoration:none;
-        font-weight:500;
-        font-size:14px;
+        font-size:12px;
+        color:white;
+        width:24px;
+        height:24px;
+        border-radius:50%;
+        margin-left:-6px;
     }
 
-    #navbar-left > img{
+    #navbar-left > img:first-of-type{
         height:48px;
+        width:48px;
     }
 
     .slider {
@@ -158,6 +179,15 @@
     }
 </style>
 <script>
+    function getToken() {
+        return sessionStorage.getItem('token') || localStorage.getItem('token');
+    }
+
+    function removeToken() {
+        sessionStorage.removeItem('token');
+        localStorage.removeItem('token');
+    }
+
     function initializeNavbar(){
         const scheme = localStorage.getItem('colorscheme')
         const elem = document.getElementById("theme-checkbox")
