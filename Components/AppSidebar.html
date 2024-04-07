@@ -1,0 +1,375 @@
+<div id="sidebar">
+    <!--https://dribbble.com/shots/21399362-Doss-Navigation-->
+    <!--https://dribbble.com/shots/23427287-Context-menus-->
+    <div class="sidebar-btn">
+        <div>
+            <img src="../icons/landing/project.png" alt="">
+            <p>New Project</p>
+        </div>
+        <img src="../icons/landing/plus.png" alt="">
+    </div>
+    <div class="sidebar-tree active-sidebar-tree">
+        <div class="sidebar-tree-main">
+            <div>
+                <img src="../icons/landing/project.png" alt="">
+                <h1>Projects</h1>
+            </div>
+            <div>
+                <div class="sidebar-tree-button hidden-sidebar-tree-button">
+                    <img src="../icons/landing/more.png" alt="">
+                </div>
+                <div class="sidebar-tree-button">
+                    <img src="../icons/landing/dropdown.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-tree-list"></div>
+        <div class="break"></div>
+        <div class="sidebar-tree active-sidebar-tree">
+            <div class="sidebar-tree-main">
+                <div>
+                    <img src="../icons/landing/pages.png" alt="">
+                    <h1>Pages</h1>
+                </div>
+                <div>
+                    <div class="sidebar-tree-button hidden-sidebar-tree-button">
+                        <img src="../icons/landing/more.png" alt="">
+                    </div>
+                    <div class="sidebar-tree-button">
+                        <img src="../icons/landing/dropdown.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-tree-list"></div>
+        </div>
+    </div>
+</div>
+<style>
+    #sidebar{
+        width:256px;
+        position:fixed;
+        padding:24px;
+        height:calc(100vh - 120px);
+        border-right:1px solid var(--border-color);
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+        left:0;
+        bottom:0;
+        z-index:2;
+    }
+
+    .sidebar-btn{
+        display:flex;
+        flex-direction:Row;
+        align-items:center;
+        justify-content:space-between;
+        width:calc(100% - 24px);
+        padding:12px;
+        border:1px solid var(--border-color);
+        transition-duration:250ms;
+        cursor:pointer;
+        border-radius:6px;
+    }
+
+    .sidebar-btn:hover{
+        box-shadow:0 0 6px 0 var(--border-color);
+    }
+
+    .sidebar-btn > div{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        gap:12px;
+    }
+
+    .sidebar-btn > img{
+        height:18px;
+        filter:invert(var(--image-invert));
+    }
+
+    .sidebar-btn > div > img{
+        height:24px;
+        filter:invert(var(--image-invert));
+    }
+
+    .sidebar-btn > div > p{
+        font-size:14px;
+        font-weight:500;
+        margin:0;
+    }
+
+    .sidebar-tree{
+        display:flex;
+        flex-direction:column;
+        width:100%;
+    }
+
+    .break{
+        height:12px;
+        width:100%;
+    }
+
+    .sidebar-tree-main{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        padding:6px 12px;
+        cursor:pointer;
+        transition-duration:250ms;
+        background:var(--bg-color-1);
+        border-radius:6px;
+    }
+
+    .sidebar-tree-main:hover{
+        background:var(--bg-color-2);
+    }
+
+    .sidebar-tree-main > div{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        gap:12px;
+    }
+
+    .sidebar-tree-main > div:first-of-type > img:first-of-type{
+        height:18px;
+        filter:invert(var(--image-invert));
+    }
+
+    .sidebar-tree-main > div:first-of-type > h1{
+        margin:0;
+        font-size:12px;
+    }
+
+    .sidebar-tree-button{
+        width:24px;
+        height:24px;
+        border-radius:3px;
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:center;
+        transition-duration:0ms;
+        z-index:1;
+    }
+
+    .sidebar-tree-button:hover{
+        background:var(--border-color);
+    }
+
+    .sidebar-tree-button > img{
+        height:18px;
+        filter:invert(var(--image-invert));
+    }
+
+    .sidebar-tree:not(.active-sidebar-tree) .sidebar-tree-button:last-of-type{
+        transform:rotate(-90deg);
+    }
+
+    .sidebar-tree.active-sidebar-tree .sidebar-tree-button:last-of-type{
+        transform:rotate(0);
+    }
+
+    .hidden-sidebar-tree-button, .sidebar-tree-list > a .sidebar-tree-button.hidden-sidebar-tree-button{
+        visibility:hidden;
+    }
+
+    .hidden-sidebar-tree-button{
+        position:relative;
+    }
+
+    .sidebar-tree:not(.active-sidebar-tree) .sidebar-tree-list{
+        display:none;
+    }
+
+    .sidebar-tree.active-sidebar-tree > .sidebar-tree-list{
+        display:flex;
+    }
+
+    .sidebar-tree-main:hover .hidden-sidebar-tree-button, .sidebar-tree-list > a:hover .sidebar-tree-button.hidden-sidebar-tree-button{
+        visibility:visible;
+    }
+
+    .sidebar-tree-list{
+        flex-direction:column;
+        transition-duration:0ms;
+    }
+
+    .sidebar-tree-list > a{
+        width:calc(100% - 24px);
+        padding:0 12px;
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        text-decoration:none;
+        border-radius:4px;
+        transition-duration:250ms;
+    }
+
+    .sidebar-tree-list > a:hover{
+        background:var(--bg-color-2);
+    }
+
+    .sidebar-tree-list > a > p{
+        font-size:12px;
+        transition-duration:250ms;
+        color:gray;
+        margin:0;
+    }
+
+    .sidebar-tree-list > a:hover > p{
+        color:var(--text-color);
+    }
+
+    .sidebar-tree-list > a > div{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+    }
+
+    .sidebar-tree-list .sidebar-tree-button > img{
+        margin:-9px;
+    }
+
+    .active-sidebar-tree-element > div::after{
+        content:"";
+        margin-left:6px;
+        width:8px;
+        height:8px;
+        border-radius:50%;
+        background:var(--accent-color);
+    }
+
+</style>
+<script>
+    function appendToSidebarTree(id, name, notifs) {
+        // Create the anchor element
+        const anchor = document.createElement('a');
+        anchor.href = `../projects/?id=${id}`;
+
+        if(notifs) anchor.classList.add("active-sidebar-tree-element");
+
+        // Create the paragraph element
+        const paragraph = document.createElement('p');
+        paragraph.textContent = name;
+        anchor.appendChild(paragraph); // Append the paragraph to the anchor
+
+        // Create the outer div
+        const outerDiv = document.createElement('div');
+
+        // Create the inner div
+        const innerDiv = document.createElement('div');
+        innerDiv.setAttribute('data-id', id);
+        innerDiv.className = 'sidebar-tree-button sidebar-context-host-1 hidden-sidebar-tree-button';
+
+        // Create the img element
+        const img = document.createElement('img');
+        img.src = '../icons/landing/more.png';
+        img.alt = '';
+
+        innerDiv.appendChild(img); // Append the img to the inner div
+        outerDiv.appendChild(innerDiv); // Append the inner div to the outer div
+        anchor.appendChild(outerDiv); // Append the outer div to the anchor
+
+        // Finally, append the anchor to the first 'sidebar-tree-list' element found
+        const sidebarTreeList = document.querySelectorAll(".sidebar-tree-list")[0];
+        if (sidebarTreeList) {
+            sidebarTreeList.appendChild(anchor);
+        } else {
+            console.warn("No 'sidebar-tree-list' element found.");
+        }
+    }
+
+    function appendToSecondSidebarTree(id, name, notifs) {
+        // Create the anchor element
+        const anchor = document.createElement('a');
+        anchor.href = id; // Using the `id` as the href
+
+        if(notifs) anchor.classList.add("active-sidebar-tree-element");
+
+        // Create the paragraph element
+        const paragraph = document.createElement('p');
+        paragraph.textContent = name; // Using the `name` for the paragraph text
+        anchor.appendChild(paragraph); // Append the paragraph to the anchor
+
+        // Create the outer div
+        const outerDiv = document.createElement('div');
+
+        // Create the inner div
+        const innerDiv = document.createElement('div');
+        innerDiv.setAttribute('data-id', id); // Again using the `id` here
+        innerDiv.className = 'sidebar-tree-button hidden-sidebar-tree-button sidebar-context-host-2';
+
+        // Create the img element
+        const img = document.createElement('img');
+        img.src = '../icons/landing/more.png';
+        img.alt = '';
+
+        innerDiv.appendChild(img); // Append the img to the inner div
+        outerDiv.appendChild(innerDiv); // Append the inner div to the outer div
+        anchor.appendChild(outerDiv); // Append the outer div to the anchor
+
+        // Append the anchor to the second '.sidebar-tree-list' element found
+        const sidebarTreeLists = document.querySelectorAll(".sidebar-tree-list");
+        if (sidebarTreeLists.length > 1) {
+            sidebarTreeLists[1].appendChild(anchor);
+        } else {
+            console.warn("Less than two '.sidebar-tree-list' elements found.");
+        }
+    }
+
+    function initializeSidebar(){
+        const toggler = document.getElementsByClassName("sidebar-tree-main");
+        for (let i = 0; i < toggler.length; i++) {
+            toggler[i].addEventListener("click", function() {
+                this.parentElement.classList.toggle("active-sidebar-tree");
+            });
+        }
+
+        appendToSidebarTree("2143", "IB Macroeconomics Internal Assessment", false);
+
+        setupHosts();
+    }
+
+    function setupHosts(){
+        const hosts = document.getElementsByClassName("sidebar-context-host-1");
+
+        for(let i = 0; i < hosts.length; i++){
+            hosts[i].addEventListener("click", function(e){
+                e.preventDefault();
+                e.stopPropagation();
+
+                openContextMenu(0, false, e, hosts[i].parentElement, {
+                    right:12,
+                    top:36
+                });
+            })
+        }
+
+        const hosts2 = document.getElementsByClassName("sidebar-context-host-2");
+
+        for(let i = 0; i < hosts2.length; i++){
+            hosts2[i].addEventListener("click", function(e){
+                e.preventDefault();
+                e.stopPropagation();
+
+                openContextMenu(2, false, e, hosts2[i].parentElement, {
+                    right:12,
+                    top:36
+                });
+            })
+        }
+    }
+
+    document.addEventListener("contextmenu", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+
+        openContextMenu(3, true, e);
+    })
+
+    initializeSidebar();
+</script>

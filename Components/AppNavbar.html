@@ -1,10 +1,151 @@
 <div id="navbar">
     <div id="navbar-left">
-        <img src="../icons/icon.png" alt="Main Icon">
+        <a href="../dashboard/">
+            <img src="../icons/icon.png" alt="Main Icon">
+        </a>
         <h1 id="navbar-header"></h1>
     </div>
+    <div id="navbar-input">
+        <input type="text" id="search" placeholder="Search for people, projects, pages...">
+        <img src="../icons/landing/search.png" alt="Search">
+    </div>
     <div id="navbar-right">
-        <div id="profile-picture" class="notification-profile"></div>
+        <div class="modal-toggle">
+            <img src="../icons/landing/sun.png" alt="">
+            <label class="switch">
+                <input type="checkbox" class="toggle-checkbox" name="toggleCheckbox" id="theme-checkbox">
+                <span class="slider"></span>
+            </label>
+            <img src="../icons/landing/moon.png" alt="">
+        </div>
+        <div class="navbar-button" id="new-element-button">
+            <img src="../icons/landing/plus.png" alt="">
+        </div>
+        <div id="profile-picture"></div>
+    </div>
+</div>
+<div id="context-menus">
+    <div class="context-menu">
+        <!--<div class="context-menu-dropdown">
+            <div>
+                <div>
+                    <img src="../icons/landing/user.png" alt="">
+                    <p>Members</p>
+                </div>
+                <img src="../icons/landing/dropdown.png" alt="">
+            </div>
+            <div class="members-dropdown">
+
+            </div>
+        </div>-->
+        <div class="context-menu-button">
+            <div>
+                <img src="../icons/landing/open.png" alt="">
+                <p>Open</p>
+            </div>
+        </div>
+        <div class="context-menu-button">
+            <div>
+                <img src="../icons/landing/edit.png" alt="">
+                <p>Change Title</p>
+            </div>
+        </div>
+        <div class="context-menu-button">
+            <div>
+                <img src="../icons/landing/clear_notifications.png" alt="">
+                <p>Clear Notifications</p>
+            </div>
+        </div>
+        <div class="context-menu-section-break"></div>
+        <div class="context-menu-button">
+            <div>
+                <img src="../icons/landing/archive.png" alt="">
+                <p>Archive Project</p>
+            </div>
+        </div>
+        <div class="context-menu-section-break"></div>
+        <div class="context-menu-button context-menu-alert">
+            <div>
+                <img src="../icons/landing/delete.png" alt="">
+                <p>Delete Project</p>
+            </div>
+        </div>
+    </div>
+    <div class="context-menu">
+        <a href="../notifications" class="context-menu-button">
+            <div>
+                <img src="../icons/landing/notification.png" alt="">
+                <p>Notifications</p>
+            </div>
+            <div id="profile-notif" class="context-menu-notif"></div>
+        </a>
+        <a href="../profile/" class="context-menu-button">
+            <div>
+                <img src="../icons/landing/user.png" alt="">
+                <p>Your Profile</p>
+            </div>
+        </a>
+        <div class="context-menu-button">
+            <div>
+                <img src="../icons/landing/settings.png" alt="">
+                <p>Settings</p>
+            </div>
+        </div>
+        <div class="context-menu-section-break"></div>
+        <div class="context-menu-button context-menu-alert" onclick="logout()">
+            <div>
+                <img src="../icons/landing/logout.png" alt="">
+                <p>Logout</p>
+            </div>
+        </div>
+    </div>
+    <div class="context-menu">
+        <div class="context-menu-button">
+            <div>
+                <img src="../icons/landing/open.png" alt="">
+                <p>Open</p>
+            </div>
+        </div>
+        <div class="context-menu-button">
+            <div>
+                <img src="../icons/landing/edit.png" alt="">
+                <p>Change Title</p>
+            </div>
+        </div>
+        <div class="context-menu-button">
+            <div>
+                <img src="../icons/landing/clear_notifications.png" alt="">
+                <p>Clear Notifications</p>
+            </div>
+        </div>
+        <div class="context-menu-section-break"></div>
+        <div class="context-menu-button">
+            <div>
+                <img src="../icons/landing/archive.png" alt="">
+                <p>Archive Page</p>
+            </div>
+        </div>
+        <div class="context-menu-section-break"></div>
+        <div class="context-menu-button context-menu-alert">
+            <div>
+                <img src="../icons/landing/delete.png" alt="">
+                <p>Delete Page</p>
+            </div>
+        </div>
+    </div>
+    <div class="context-menu">
+        <div class="context-menu-button">
+            <div>
+                <img src="../icons/landing/project.png" alt="">
+                <p>Create Project</p>
+            </div>
+        </div>
+        <div class="context-menu-button">
+            <div>
+                <img src="../icons/landing/create_page.png" alt="">
+                <p>Create Page</p>
+            </div>
+        </div>
     </div>
 </div>
 <style>
@@ -24,12 +165,52 @@
         left:0;
     }
 
+    #navbar-left > a > img{
+        height:48px;
+    }
+
+    .navbar-button{
+        width:36px;
+        height:36px;
+        border-radius:6px;
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:center;
+        cursor:pointer;
+        background:var(--bg-color-1);
+        transition-duration:250ms;
+    }
+
+    .navbar-button:hover{
+        background:var(--border-color);
+    }
+
+    .navbar-button > img{
+        filter:invert(var(--image-invert));
+        height:24px;
+    }
+
     #profile-picture{
-        background:var(--profile-color-1);
+        background-size: cover;
+        background-blend-mode: multiply;
+        transition-duration:250ms;
+        font-weight:700;
+        font-size:14px;
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:center;
         width:36px;
         height:36px;
         border-radius:50%;
         position:relative;
+        cursor:pointer;
+        color:white;
+    }
+
+    #profile-picture:hover{
+        transform:scale(1.05);
     }
 
     #navbar > div{
@@ -44,7 +225,15 @@
     }
 
     .notification-profile::after{
-
+        content:'';
+        position:absolute;
+        width:8px;
+        height:8px;
+        background:var(--profile-color-6);
+        border:3px solid var(--bg-color-1);
+        border-radius:50%;
+        top:-3px;
+        right:-3px;
     }
 
     @keyframes pulse-animation {
@@ -57,6 +246,93 @@
             box-shadow: 0 0 24px rgba(0, 0, 0, 0);
         }
     }
+
+    #navbar-input{
+        position:relative;
+    }
+
+    #navbar-input > input{
+        width:calc(100vw - 408px);
+        padding-left:48px;
+        height:36px;
+        font-size:14px;
+        border:1px solid var(--border-color);
+        background:var(--bg-color-1);
+        outline:none;
+        border-radius:6px;
+    }
+
+    #navbar-input > img{
+        position:absolute;
+        filter:invert(0.5);
+        height:24px;
+        left:12px;
+    }
+
+    .modal-toggle{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        gap:12px;
+    }
+
+    .modal-toggle > img{
+        height:24px;
+        filter: invert(var(--image-invert));
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 42px;
+        height: 24px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--border-color);
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    .toggle-checkbox:checked + .slider {
+        background-color: var(--accent-color);
+    }
+
+    .toggle-checkbox:focus + .slider {
+        box-shadow: 0 0 1px var(--accent-color);
+    }
+
+    .toggle-checkbox:checked + .slider:before {
+        -webkit-transform: translateX(18px);
+        -ms-transform: translateX(18px);
+        transform: translateX(18px);
+    }
 </style>
 <script>
     function getToken() {
@@ -67,4 +343,173 @@
         sessionStorage.removeItem('token');
         localStorage.removeItem('token');
     }
+
+    async function initializeNavbar(){
+        const scheme = localStorage.getItem('colorscheme')
+        const elem = document.getElementById("theme-checkbox")
+
+        if(scheme === "light"){
+            elem.checked = false;
+        } else if(scheme === "dark"){
+            elem.checked = true;
+        }
+
+        const user = await getUser();
+
+        //url(../icons/patterns/waves.png) var(--profile-color-${user.color})
+        document.getElementById("profile-picture").style.background = `var(--profile-color-${user.color})`;
+        document.getElementById("profile-picture").innerHTML = user.fullName.match(/\b(\w)/g).join('');
+
+        if(user.notifications.length > 0) document.getElementById("profile-picture").classList.add("notification-profile");
+    }
+
+    async function getUser(){
+        const uuid = getToken();
+
+        const response = await fetch(`https://us-central1-office-vcs.cloudfunctions.net/app/getUser`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Authorization':`Bearer ${uuid}`
+            },
+            mode: 'cors'
+        }).catch(error => {
+            console.log(error)
+        });
+
+        const context = await response.json();
+
+        console.log(context);
+
+        return context;
+    }
+
+    document.getElementById("theme-checkbox").onchange = function(){
+        const elem = document.getElementById("theme-checkbox")
+
+        if(elem.checked){
+            localStorage.setItem('colorscheme', 'dark');
+            initializeColorScheme("dark")
+        } else {
+            localStorage.setItem('colorscheme', 'light');
+            initializeColorScheme("light")
+        }
+    }
+
+    function logout(){
+        removeToken();
+
+        location.href = "../login/";
+    }
+
+    document.getElementById("profile-picture").addEventListener("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+
+        openContextMenu(1, false, e, document.getElementById("profile-picture"), {
+            right:0,
+            top:48
+        });
+    });
+
+    document.getElementById("new-element-button").addEventListener("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+
+        openContextMenu(3, false, e, document.getElementById("new-element-button"), {
+            right:24,
+            top:48
+        });
+    });
+
+    function openContextMenu(contextMenuIndex, openAtCursor = true, event = null, targetElement = null, fixedPositions = {top: null, right: null, bottom: null, left: null}) {
+        // Close any currently open context menu
+        document.querySelectorAll('.context-menu.active-context-menu').forEach(menu => {
+            menu.classList.remove('active-context-menu');
+        });
+
+        const contextMenus = document.querySelectorAll('.context-menu');
+        if (contextMenuIndex >= contextMenus.length) {
+            console.error('Invalid context menu index.');
+            return;
+        }
+
+        const contextMenu = contextMenus[contextMenuIndex];
+
+        // Event listener to close the context menu if clicking outside of it
+        document.addEventListener('click', function closeContextMenu(event) {
+            if (!contextMenu.contains(event.target)) {
+                contextMenu.classList.remove('active-context-menu');
+                document.removeEventListener('click', closeContextMenu);
+            }
+        });
+
+        if (contextMenu.classList.contains('active-context-menu')) {
+            contextMenu.classList.remove('active-context-menu');
+        } else {
+            // Close any other open context menus first
+            document.querySelectorAll('.context-menu.active-context-menu').forEach(menu => {
+                menu.classList.remove('active-context-menu');
+            });
+
+            contextMenu.classList.add('active-context-menu');
+
+            if (openAtCursor && event) {
+                positionAtCursor(contextMenu, event);
+            } else if (targetElement) {
+                positionRelativeToElement(contextMenu, targetElement, fixedPositions);
+            }
+        }
+    }
+
+    function positionAtCursor(contextMenu, event) {
+        const menuWidth = contextMenu.offsetWidth;
+        const menuHeight = contextMenu.offsetHeight;
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        let posX = event.clientX;
+        let posY = event.clientY;
+
+        // Adjust if the menu goes beyond the right edge of the screen
+        if (posX + menuWidth > screenWidth) {
+            posX = screenWidth - menuWidth;
+        }
+
+        // Adjust if the menu goes beyond the bottom edge of the screen
+        if (posY + menuHeight > screenHeight) {
+            posY = screenHeight - menuHeight;
+        }
+
+        contextMenu.style.left = `${posX}px`;
+        contextMenu.style.top = `${posY}px`;
+    }
+
+    function positionRelativeToElement(contextMenu, targetElement, fixedPositions) {
+        const rect = targetElement.getBoundingClientRect();
+        let posX, posY;
+
+        // Horizontal position
+        if (fixedPositions.right !== null) {
+            posX = rect.right + fixedPositions.right - contextMenu.offsetWidth;
+        } else if (fixedPositions.left !== null) {
+            posX = rect.left + fixedPositions.left;
+        } else {
+            posX = rect.left; // Default to left if neither left nor right is specified
+        }
+
+        // Vertical position
+        if (fixedPositions.top !== null) {
+            posY = rect.top + fixedPositions.top;
+        } else if (fixedPositions.bottom !== null) {
+            posY = rect.bottom + fixedPositions.bottom - contextMenu.offsetHeight;
+        } else {
+            posY = rect.top; // Default to top if neither top nor bottom is specified
+        }
+
+        contextMenu.style.left = `${posX}px`;
+        contextMenu.style.top = `${posY}px`;
+    }
+
+    initializeNavbar();
 </script>
