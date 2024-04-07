@@ -55,6 +55,8 @@ function resolveRelativePaths(container, htmlFilePath) {
     const baseUri = new URL(htmlFilePath, window.location.href);
     const elementsWithSrc = container.querySelectorAll('[src]');
     const elementsWithHref = container.querySelectorAll('[href]');
+    const elementsWithDataImage = container.querySelectorAll('[data-image]');
+    const elementsWithDataHoverImage = container.querySelectorAll('[data-hover-image]');
 
     elementsWithSrc.forEach(el => {
         const src = el.getAttribute('src');

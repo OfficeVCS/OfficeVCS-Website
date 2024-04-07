@@ -43,14 +43,14 @@ body *{
 }
 
 [data-theme='dark'] {
-    --bg-color-1:#131314;
-    --bg-color-2:#2c2c2e;
+    --bg-color-1:#1A1C20;
+    --bg-color-2:#131517;
     --dark-gray:black;
     --accent-color:#1FBAF1;
     --light-accent:#053648;
     --accent-color-2:#B741CB;
     --light-accent-2:#36103c;
-    --border-color:#343434;
+    --border-color:#2D2F33;
 
     --profile-color-1:#0aabfe;
     --profile-light-1:#04415f;
@@ -98,4 +98,84 @@ body *{
 
     --text-color:black;
     --image-invert:0;
+}
+
+.context-menu{
+    display:none;
+    flex-direction:column;
+    border-radius:12px;
+    background:var(--bg-color-1);
+    box-shadow:0 0 12px 0 var(--border-color);
+    padding:6px 0;
+    position:absolute;
+    width:256px;
+    z-index:2;
+}
+
+.context-menu.active-context-menu{
+    display:flex !important;
+}
+
+.context-menu-button, .context-menu-dropdown > div:first-of-type{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    transition-duration:250ms;
+    border-radius:6px;
+    padding:6px;
+    margin:0 6px;
+    width:calc(100% - 24px);
+    text-decoration:none;
+}
+
+.context-menu-button{
+    cursor:pointer;
+}
+
+.context-menu-button:hover, .context-menu-dropdown > div:first-of-type:hover{
+    background:var(--bg-color-2);
+}
+
+.context-menu-button > div, .context-menu-dropdown > div:first-of-type > div {
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:6px;
+}
+
+.context-menu-button > div:first-of-type > img, .context-menu-dropdown > div:first-of-type > div:first-of-type > img{
+    height:16px;
+    filter:invert(0.5);
+}
+
+.context-menu-button > div:first-of-type > p, .context-menu-dropdown > div:first-of-type > div:first-of-type > p{
+    font-size:12px;
+    margin:0;
+}
+
+.context-menu-dropdown > div:first-of-type > img{
+    height:16px;
+}
+
+.context-menu-dropdown{
+    position:relative;
+}
+
+.context-menu-section-break{
+    width:100%;
+    height:1px;
+    background:var(--border-color);
+    margin:6px 0;
+}
+
+.context-menu-alert:hover{
+    background:var(--light-accent-2) !important;
+}
+
+.context-menu-notif{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--accent-color);
 }

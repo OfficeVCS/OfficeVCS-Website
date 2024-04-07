@@ -1,5 +1,37 @@
+function getToken() {
+    return sessionStorage.getItem('token') || localStorage.getItem('token');
+}
+
+function removeToken() {
+    sessionStorage.removeItem('token');
+    localStorage.removeItem('token');
+}
+
+function initializeNavbar(){
+    const scheme = localStorage.getItem('colorscheme')
+    const elem = document.getElementById("theme-checkbox")
+
+    if(scheme === "light"){
+        elem.checked = false;
+    } else if(scheme === "dark"){
+        elem.checked = true;
+    }
+}
+
+document.getElementById("theme-checkbox").onchange = function(){
+    const elem = document.getElementById("theme-checkbox")
+
+    if(elem.checked){
+        localStorage.setItem('colorscheme', 'dark');
+        initializeColorScheme("dark")
+    } else {
+        localStorage.setItem('colorscheme', 'light');
+        initializeColorScheme("light")
+    }
+}
+
 async function initialize() {
-    await createComponent("../../Components/PagesEditorNavbar.html", document.getElementById("navbar-container"));
+    initializeNavbar();
 
     const token = getToken();
 
@@ -10,21 +42,21 @@ async function initialize() {
         location.href = "../../login";
     }
 
-    const response = await fetch(`https://us-central1-office-vcs.cloudfunctions.net/app/getUser`, {
+    await fetch(`https://us-central1-office-vcs.cloudfunctions.net/app/getUser`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type'
         },
         mode: 'cors'
-    });
-
-    const context = response;
-
-    console.log(context);
+    }).then(async function(response){
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}, ${await response.text()}`);
+        }
+        return response.json();
+    })
+        .then(data => console.log('User Data:', data))
+        .catch(error => console.error('Error fetching user data:', error));
 
     document.getElementById("profile-picture").innerHTML = "KK"
 }

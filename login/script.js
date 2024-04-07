@@ -90,8 +90,6 @@ document.getElementById("log-in-btn").addEventListener("click", async function (
         keepMeSignedIn: document.getElementById("keep-signed-in").classList.contains("active-checkbox")
     }
 
-    //console.log(userObj);
-
     const response = await fetch(`https://us-central1-office-vcs.cloudfunctions.net/app/login`, {
         method: 'POST',
         headers: {
@@ -116,12 +114,87 @@ document.getElementById("log-in-btn").addEventListener("click", async function (
         } else {
             window.sessionStorage.setItem('token', message.token);
         }
+
+        await setLocation();
     } else {
         const text = await response.text();
 
         displayAlert(text);
     }
 });
+
+async function setLocation(){
+    const uuid = sessionStorage.getItem('token') || localStorage.getItem('token');
+
+    const response = await fetch(`https://us-central1-office-vcs.cloudfunctions.net/app/getUser`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Authorization':`Bearer ${uuid}`
+        },
+        mode: 'cors'
+    }).catch(error => {
+        console.log(error)
+    });
+
+    const context = await response.json();
+
+    if(context.onboarding === true){
+        location.href = "../dashboard/";
+    } else {
+        location.href = "./?onboarding";
+    }
+}
+
+document.getElementById("onboarding-btn").addEventListener("click", async function(e){
+    await completeOnboarding();
+});
+
+async function completeOnboarding(){
+    const uuid = sessionStorage.getItem('token') || localStorage.getItem('token');
+
+    let userType = document.getElementById("user-type").innerHTML.replace(/\s+/g, '');
+    let gender = document.getElementById("gender").innerHTML.replace(/\s+/g, '');
+    let organizationSize = document.getElementById("organization-size").innerHTML.replace(/\s+/g, '');
+    let projectType = document.getElementById("project-type").innerHTML.replace(/\s+/g, '');
+
+    if(userType === "Select an option") userType = "";
+    if(gender === "Select an option") userType = "";
+    if(organizationSize === "Select an option") userType = "";
+    if(projectType === "Select an option") userType = "";
+
+    const userObj = {
+        userType: userType,
+        gender: gender,
+        dateOfBirth: document.getElementById("date-of-birth").value,
+        phoneNumber: document.getElementById("phone-number").value,
+        organizationName: document.getElementById("organization-name").value,
+        organizationSize: organizationSize,
+        projectType: projectType
+    }
+
+    console.log(userObj);
+
+    const response = await fetch(`https://us-central1-office-vcs.cloudfunctions.net/app/submitOnboardingAnswers`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${uuid}`,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type'
+        },
+        body: JSON.stringify(userObj),
+        mode: 'cors'
+    });
+
+    const context = await response.text();
+
+    displayAlert(context);
+
+    if(response.status === 200) location.href = "../dashboard";
+}
 
 document.getElementById("sign-up-btn").addEventListener("click", async function (e) {
     e.preventDefault();
@@ -211,6 +284,9 @@ function initialize(){
     const queryParams = new URLSearchParams(window.location.search);
 
     if(queryParams.toString().includes('signup')){
+        sessionStorage.removeItem('token');
+        localStorage.removeItem('token');
+
         document.querySelectorAll(".active-modal").forEach(function(elem){
             elem.classList.remove("active-modal")
         });
@@ -228,6 +304,9 @@ function initialize(){
         });
 
         document.getElementById("modal-containers").children[5].classList.add("active-modal");
+    } else {
+        sessionStorage.removeItem('token');
+        localStorage.removeItem('token');
     }
 
     document.querySelectorAll(".back-button").forEach(function(elem){
