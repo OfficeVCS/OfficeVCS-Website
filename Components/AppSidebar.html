@@ -45,6 +45,31 @@
     </div>
 </div>
 <style>
+    #main-container-parent{
+        display:flex;
+        flex-direction:column;
+        position:fixed;
+        height:calc(100% - 73px);
+        width:calc(100vw - 305px);
+        background:var(--bg-color-2);
+        bottom:0;
+        right:0;
+        z-index:1;
+    }
+
+    #main-container-header{
+        width:calc(100% - 48px);
+        padding:0 24px;
+        height:48px;
+        background:var(--bg-color-1);
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        font-size:14px;
+        font-weight:600;
+        border-bottom:1px solid var(--border-color);
+    }
+
     #sidebar{
         width:256px;
         position:fixed;

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile | OfficeVCS - The Future of Collaboration</title>
+
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../icons/icon.png">
+    <link rel="stylesheet" href="../dashboard/main.css">
+
+    <script src="../ComponentLib.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="../main.js" defer></script>
+</head>
+<body>
+    <!--https://dribbble.com/shots/16838613-Dark-Light-UI-for-Cards-Components-->
+    <!--https://dribbble.com/shots/19110031-Document-Editor-->
+    <div id="parent-wrapper">
+        <div id="navbar-container"></div>
+        <div id="main-wrapper">
+            <div id="sidebar"></div>
+            <div id="main-container">
+                <div id="profile-left">
+                    <div id="profile-main-card">
+                        <div id="profile-main">
+                            <div id="profile-main-circle"></div>
+                            <h1 id="profile-name"></h1>
+                            <p id="profile-email"></p>
+                        </div>
+                        <div class="profile-break"></div>
+                        <div id="profile-progress">
+                            <h6>Profile</h6>
+                            <div id="profile-progress-bar">
+                                <div></div>
+                            </div>
+                            <h5 id="progress-complete">35% Complete</h5>
+                        </div>
+                        <div class="profile-break"></div>
+                        <div id="profile-buttons">
+                            <div class="profile-card-button" onclick="toggleModal(true, 0)">
+                                <img src="../icons/landing/settings.png" alt="">
+                                <p>Update Profile</p>
+                            </div>
+                            <div class="profile-card-button alert-card-button" onclick="logout()">
+                                <img src="../icons/landing/logout.png" alt="">
+                                <p>Logout</p>
+                            </div>
+                            <a class="profile-card-button alert-card-button" onclick="location.href = '../login/?delete'">
+                                <img src="../icons/landing/delete.png" alt="">
+                                <p>Delete Account</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="profile-right">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modals-container">
+        <div class="modal">
+            <div class="back-button" onclick="toggleModal(false, 0)">
+                <img src="../icons/landing/x.png" alt="Back Button">
+            </div>
+            <img src="../icons/icon_magenta.png" alt="">
+            <h1>Edit User Profile</h1>
+            <h6>Profile Theme Color</h6>
+            <div id="profile-color-selector"></div>
+            <h6>Full Name</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/user.png" alt="Email Icon">
+                <input type="text" id="edit-profile-name">
+            </div>
+            <h6>Email</h6>
+            <div class="modal-input">
+                <img src="../icons/landing/email.png" alt="Email Icon">
+                <input type="text" id="edit-profile-email">
+            </div>
+            <button class="hero-button" id="edit-profile-btn">Save Changes</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -7,37 +7,42 @@
     <link rel="stylesheet" href="../../main.css">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="../../icons/icon.png">
+    <link rel="stylesheet" href="../../dashboard/main.css">
 
     <script src="../../ComponentLib.js" defer></script>
     <script src="script.js" defer></script>
     <script src="../../main.js" defer></script>
 </head>
 <body>
-    <div id="main-wrapper">
-        <div id="navbar">
-            <div id="navbar-left">
-                <img src="../../icons/icon.png" alt="Main Icon">
-            </div>
-            <div id="navbar-right">
-                <div class="modal-toggle">
-                    <img src="../../icons/landing/sun.png" alt="">
-                    <label class="switch">
-                        <input type="checkbox" class="toggle-checkbox" name="toggleCheckbox" id="theme-checkbox">
-                        <span class="slider"></span>
-                    </label>
-                    <img src="../../icons/landing/moon.png" alt="">
+    <!--https://dribbble.com/shots/16838613-Dark-Light-UI-for-Cards-Components-->
+    <!--https://dribbble.com/shots/19110031-Document-Editor-->
+    <div id="parent-wrapper">
+        <div id="navbar-container"></div>
+        <div id="main-wrapper">
+            <div id="sidebar"></div>
+            <div id="main-container">
+                <div id="toolbar">
+                    <div id="toolbar-main">
+                        <button onclick="execCmd('bold')">Bold</button>
+                        <button onclick="execCmd('italic')">Italic</button>
+                        <button onclick="execCmd('underline')">Underline</button>
+                        <button onclick="execCmd('strikeThrough')">Strikethrough</button>
+                        <button onclick="execCmd('insertUnorderedList')">Bulleted List</button>
+                        <button onclick="execCmd('insertOrderedList')">Numbered List</button>
+                        <button onclick="execCmd('createLink', prompt('Enter a URL', 'http://'))">Insert Link</button>
+                        <button onclick="execCmd('foreColor', prompt('Enter a color', '#000000'))">Text Color</button>
+                        <button onclick="execCmd('hiliteColor', prompt('Enter a highlight color', '#FFFF00'))">Highlight</button>
+                        <button onclick="execCmd('fontSize', prompt('Enter a font size (1-7)', '3'))">Font Size</button>
+                        <button onclick="execCmd('fontName', prompt('Enter a font family', 'Arial'))">Font Family</button>
+                        <button onclick="execCmd('print')">Print Document</button>
+                    </div>
                 </div>
-                <div id="shared-people">
-                    <div style="background:var(--profile-color-1);">RK</div>
-                    <div style="background:var(--profile-color-4);">SS</div>
-                    <div style="background:var(--profile-color-3);">VJ</div>
-                    <div style="background:var(--profile-color-6);">AP</div>
-                </div>
-                <div class="navbar-button" id="help-button"></div>
-                <div class="navbar-button" id="share-button"></div>
-                <div id="profile-picture" class="notification-profile">RK</div>
+                <iframe name="richTextField" id="richTextField"></iframe>
             </div>
         </div>
+    </div>
+    <div id="modal-container">
+
     </div>
 </body>
 </html>
